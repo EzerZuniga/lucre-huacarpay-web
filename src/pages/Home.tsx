@@ -1,17 +1,17 @@
 import React from 'react';
 import HeroSection from '../sections/HeroSection';
-import ProyectoSection from '../sections/ProyectoSection';
-import GaleriaSection from '../sections/GaleriaSection';
-import EquipoSection from '../sections/EquipoSection';
 import ContactoSection from '../sections/ContactoSection';
+import EquipoSection from '../sections/EquipoSection';
+import GaleriaSection from '../sections/GaleriaSection';
+import ProyectoSection from '../sections/ProyectoSection';
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <main>
       <HeroSection />
       <ProyectoSection />
-      <GaleriaSection />
       <EquipoSection />
+      <GaleriaSection />
       <ContactoSection />
     </main>
   );

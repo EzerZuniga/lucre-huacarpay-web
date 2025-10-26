@@ -1,12 +1,28 @@
 [build]
-command = "npm run build"
-publish = "dist"
-functions = "netlify/funciones"
+  publish = "dist"
+  command = "npm run build"
 
 [build.environment]
-NODE_VERSION = "18.0.0"
+  NODE_VERSION = "20"
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
+
+[dev]
+  publish = "dist"
+  port = 5173
+  targetPort = 5173
+
+[context.production.environment]
+  VITE_API_BASE_URL = "https://api.lagunahuacarpay.org/v1"
+
+[context.deploy-preview.environment]
+  VITE_API_BASE_URL = "https://staging-api.lagunahuacarpay.org/v1"
+
+[context.branch-deploy.environment]
+  VITE_API_BASE_URL = "https://staging-api.lagunahuacarpay.org/v1"

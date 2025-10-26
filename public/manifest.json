@@ -1,16 +1,57 @@
 {
-    "name": "Luces del Ande",
-    "short_name": "Lucre",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#0056b3",
-    "theme_color": "#0056b3",
-    "description": "Circuito turístico nocturno sostenible en la laguna de Huacarpay",
-    "icons": [
-      {
-        "src": "favicon.svg",
-        "sizes": "48x48 72x72 96x96 128x128 256x256",
-        "type": "image/svg+xml"
-      }
-    ]
-  }
+  "name": "Laguna de Huacarpay - Sitio Ramsar Lucre",
+  "short_name": "Huacarpay",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e3a8a",
+  "theme_color": "#1e3a8a",
+  "description": "Información oficial del humedal Ramsar Laguna de Huacarpay en Lucre, Cusco - Biodiversidad y conservación",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es-PE",
+  "dir": "ltr",
+  "categories": ["education", "travel", "nature"],
+  "icons": [
+    {
+      "src": "favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "48x48 72x72 96x96 128x128 256x256",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-narrow-1080x1920.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Página principal de la Laguna de Huacarpay en móvil"
+    },
+    {
+      "src": "screenshot-wide-1920x1080.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Vista panorámica de la Laguna de Huacarpay en desktop"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://dreamy.tours/es/blog/laguna-huacarpay-en-cusco/"
+    }
+  ],
+  "prefer_related_applications": false
+}
