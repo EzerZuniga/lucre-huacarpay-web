@@ -1,20 +1,20 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
-      '@components': resolve(__dirname, './src/components'),
-      '@pages': resolve(__dirname, './src/pages'),
-      '@assets': resolve(__dirname, './src/assets'),
-      '@utils': resolve(__dirname, './src/utils'),
-      '@services': resolve(__dirname, './src/services'),
-      '@types': resolve(__dirname, './src/types'),
-      '@hooks': resolve(__dirname, './src/hooks'),
-      '@contexts': resolve(__dirname, './src/contexts'),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
+      '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
+      '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
+      '@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
+      '@services': fileURLToPath(new URL('./src/services', import.meta.url)),
+      '@types': fileURLToPath(new URL('./src/types', import.meta.url)),
+      '@hooks': fileURLToPath(new URL('./src/hooks', import.meta.url)),
+      '@contexts': fileURLToPath(new URL('./src/contexts', import.meta.url)),
     },
   },
   server: {
@@ -28,10 +28,12 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          icons: ['react-icons'],
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined
+          if (id.includes('react-router-dom') || id.includes('react-router')) return 'router'
+          if (id.includes('react-icons')) return 'icons'
+          if (id.includes('react')) return 'vendor'
+          return undefined
         },
       },
     },
