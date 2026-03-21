@@ -7,11 +7,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#3b82f6',
-        secondary: '#1e40af',
+        wetland: {
+          moss: '#5B6D3E',
+          'moss-dark': '#3F4D2B',
+          lagoon: '#2F7898',
+          'lagoon-dark': '#1F5169',
+          earth: '#B89563',
+          sand: '#E8DDC8',
+          ivory: '#F8F5EE',
+          mist: '#DCE9E7',
+          foam: '#FDFBF6',
+          ink: '#233228',
+          'ink-soft': '#4B5D51',
+          cta: '#D79A2B',
+          'cta-dark': '#AF7619',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+        sans: ['Montserrat', 'ui-sans-serif', 'system-ui'],
+        serif: ['Lora', 'ui-serif', 'Georgia'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

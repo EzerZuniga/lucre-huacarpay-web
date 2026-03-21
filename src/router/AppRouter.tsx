@@ -1,24 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from '../components/layout/Layout';
-import Home from '../pages/Home';
-import Biodiversidad from '../pages/Home';
-import Conservacion from '../pages/Equipo';
-import Galeria from '../pages/Galeria';
-import Visitanos from '../pages/Proyecto';
-import Contacto from '../pages/Contacto';
+import { Layout } from '@/components';
+import { ROUTES } from '@/config';
+import { Contacto, Equipo, Galeria, Home, Proyecto } from '@/pages';
 
 const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/biodiversidad" element={<Biodiversidad />} />
-          <Route path="/conservacion" element={<Conservacion />} />
-          <Route path="/galeria" element={<Galeria />} />
-          <Route path="/visitanos" element={<Visitanos />} />
-          <Route path="/contacto" element={<Contacto />} />
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route path={ROUTES.BIODIVERSITY} element={<Home />} />
+          <Route path={ROUTES.CONSERVATION} element={<Equipo />} />
+          <Route path={ROUTES.GALLERY} element={<Galeria />} />
+          <Route path={ROUTES.VISIT_US} element={<Proyecto />} />
+          <Route path={ROUTES.CONTACT} element={<Contacto />} />
         </Routes>
       </Layout>
     </BrowserRouter>

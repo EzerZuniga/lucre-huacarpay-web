@@ -1,87 +1,64 @@
 import React from 'react';
-import Button from '../components/ui/Button';
+import { ROUTES } from '@/config';
+import { Button } from '@/components';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-slate-800 to-slate-900 overflow-hidden">
-      {/* Background overlay */}
-      <div className="absolute inset-0 bg-black opacity-40"></div>
-      
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-green-500 rounded-full blur-3xl"></div>
-      </div>
+    <section className="relative flex min-h-screen items-center overflow-hidden">
+      <img
+        src="/laguna.png"
+        alt="Vista panoramica de la Laguna Huacarpay"
+        className="absolute inset-0 h-full w-full object-cover object-center"
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Laguna <span className="text-blue-400">Huacarpay</span>
+      <div className="absolute inset-0 bg-gradient-to-r from-wetland-ink/88 via-wetland-ink/68 to-wetland-ink/52" />
+      <div className="absolute inset-0 bg-gradient-to-b from-wetland-ink/72 via-wetland-ink/25 to-wetland-ink/55" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(232,221,200,0.2),transparent_35%),radial-gradient(circle_at_85%_80%,rgba(47,120,152,0.28),transparent_42%)]" />
+
+      <div className="relative z-10 w-full py-14 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl text-center lg:text-left">
+            <h1 className="mb-6 text-5xl font-bold leading-tight text-wetland-foam drop-shadow-[0_4px_14px_rgba(0,0,0,0.8)] sm:text-6xl lg:text-7xl">
+              Laguna <span className="text-wetland-sand">Huacarpay</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-2xl leading-relaxed">
-              Humedal Ramsar de importancia internacional en el Valle Sur del Cusco. 
+
+            <p className="mb-8 max-w-2xl text-xl leading-relaxed text-wetland-foam/95 drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] sm:text-2xl">
+              Humedal Ramsar de importancia internacional en el Valle Sur del Cusco.
               Santuario de biodiversidad andina y patrimonio natural del Perú.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button 
-                to="/visitanos" 
-                variant="primary" 
-                className="text-lg px-8 py-4 bg-blue-600 hover:bg-blue-700"
+
+            <div className="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
+              <Button
+                to={ROUTES.VISIT_US}
+                variant="primary"
+                className="px-8 py-4 text-lg shadow-xl shadow-black/45"
               >
                 Descubrir la Laguna
               </Button>
-              <Button 
-                to="/biodiversidad" 
-                variant="outline" 
-                className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-slate-900"
+              <Button
+                to={ROUTES.BIODIVERSITY}
+                variant="outline"
+                className="border-wetland-foam bg-wetland-ink/45 px-8 py-4 text-lg text-wetland-foam backdrop-blur-sm hover:bg-wetland-foam hover:text-wetland-ink shadow-xl shadow-black/40"
               >
                 Conocer Biodiversidad
               </Button>
             </div>
-            
-            {/* Stats */}
-            <div className="mt-12 flex flex-wrap justify-center lg:justify-start gap-8">
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">40+</div>
-                <div className="text-blue-200 text-sm">Especies de Aves</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">124</div>
-                <div className="text-blue-200 text-sm">Hectáreas</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">3050</div>
-                <div className="text-blue-200 text-sm">msnm</div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Hero Image/Illustration */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-lg">
-              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl">
-                <div className="bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-2xl w-full aspect-video flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <div className="text-6xl mb-4"></div>
-                    <p className="text-lg font-semibold">Laguna Huacarpay</p>
-                    <p className="text-blue-200 text-sm">Humedal Ramsar - Lucre</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Floating elements */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-400 rounded-full blur-sm"></div>
-              <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-green-400 rounded-full blur-sm"></div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white rounded-full mt-2"></div>
+            <div className="mt-12 flex flex-wrap justify-center gap-8 lg:justify-start">
+              <div className="text-center">
+                <div className="mb-1 text-2xl font-bold text-wetland-foam drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] md:text-3xl">40+</div>
+                <div className="text-sm text-wetland-sand drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">Especies de Aves</div>
+              </div>
+              <div className="text-center">
+                <div className="mb-1 text-2xl font-bold text-wetland-foam drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] md:text-3xl">124</div>
+                <div className="text-sm text-wetland-sand drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">Hectáreas</div>
+              </div>
+              <div className="text-center">
+                <div className="mb-1 text-2xl font-bold text-wetland-foam drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] md:text-3xl">3050</div>
+                <div className="text-sm text-wetland-sand drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">msnm</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

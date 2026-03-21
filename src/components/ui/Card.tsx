@@ -20,10 +20,20 @@ const Card: React.FC<CardProps> = ({
   onClick,
   ...props 
 }) => {
+  const isInteractive = typeof onClick === 'function';
+
   return (
     <div 
-      className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl border border-slate-200 ${className}`}
+      className={`bg-wetland-foam rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl border border-wetland-sand ${className}`}
       onClick={onClick}
+      onKeyDown={isInteractive ? (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onClick?.();
+        }
+      } : undefined}
+      role={isInteractive ? 'button' : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
       {...props}
     >
       {image && (
@@ -37,12 +47,12 @@ const Card: React.FC<CardProps> = ({
       )}
       <div className="p-6">
         {title && (
-          <h3 className="text-xl font-bold mb-3 text-slate-800 tracking-tight">
+          <h3 className="text-xl font-bold mb-3 text-wetland-ink tracking-tight">
             {title}
           </h3>
         )}
         {description && (
-          <p className="text-slate-600 mb-4 leading-relaxed">
+          <p className="text-wetland-ink-soft mb-4 leading-relaxed">
             {description}
           </p>
         )}

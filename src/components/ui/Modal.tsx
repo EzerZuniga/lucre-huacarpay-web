@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
 
 interface ModalProps {
@@ -16,6 +16,21 @@ const Modal: React.FC<ModalProps> = ({
   children,
   size = 'md'
 }) => {
+  useEffect(() => {
+    if (!isOpen) {
+      return undefined;
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const sizeClasses = {
@@ -37,15 +52,15 @@ const Modal: React.FC<ModalProps> = ({
       onClick={handleBackdropClick}
     >
       <div 
-        className={`bg-white rounded-xl shadow-2xl w-full ${sizeClasses[size]} max-h-[90vh] overflow-hidden animate-in fade-in duration-300`}
+        className={`bg-wetland-foam rounded-xl shadow-2xl w-full ${sizeClasses[size]} max-h-[90vh] overflow-hidden animate-in fade-in duration-300`}
       >
-        <div className="flex items-center justify-between p-6 border-b border-slate-200">
+        <div className="flex items-center justify-between p-6 border-b border-wetland-sand">
           {title && (
-            <h2 className="text-xl font-bold text-slate-800">{title}</h2>
+            <h2 className="text-xl font-bold text-wetland-ink">{title}</h2>
           )}
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 transition-colors duration-300 p-1 rounded-lg hover:bg-slate-100"
+            className="text-wetland-ink-soft hover:text-wetland-ink transition-colors duration-300 p-1 rounded-lg hover:bg-wetland-sand/40"
             aria-label="Cerrar modal"
           >
             <FiX size={24} />

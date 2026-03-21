@@ -5,7 +5,7 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![React](https://img.shields.io/badge/React-18.2.0-61dafb.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-3178c6.svg)
-![Vite](https://img.shields.io/badge/Vite-4.5.0-646cff.svg)
+![Vite](https://img.shields.io/badge/Vite-8.0.1-646cff.svg)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38b2ac.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -82,11 +82,8 @@ Asegúrate de tener instalado:
    ```
 
 3. **Configura las variables de entorno**
-   ```bash
-   cp .env.example .env.local
-   ```
    
-   Edita `.env.local` con tus configuraciones:
+   Crea un archivo `.env.local` en la raíz del proyecto con tus configuraciones:
    ```env
    VITE_API_BASE_URL=https://api.lagunahuacarpay.org/v1
    VITE_GOOGLE_MAPS_API_KEY=tu_api_key_aqui
@@ -107,18 +104,17 @@ Asegúrate de tener instalado:
 
 ```
 lucre-huacarpay-web/
-├── public/                 # Archivos estáticos
-│   ├── index.html            # HTML principal
+├── public/                 # Archivos estáticos (copiados tal cual al build)
 │   └── manifest.json         # Configuración PWA
 ├── src/                   # Código fuente
 │   ├── assets/           # Recursos estáticos
-│   │   ├── icons/           # Iconos personalizados
-│   │   ├── images/          # Imágenes del proyecto
 │   │   └── styles/          # Estilos globales
 │   ├── components/       # Componentes reutilizables
 │   │   ├── layout/          # Componentes de layout
 │   │   └── ui/              # Componentes de interfaz
+│   ├── config/           # Configuración compartida (rutas, navegación)
 │   ├── contexts/         # Context providers
+│   ├── data/             # Datos estáticos centralizados
 │   ├── hooks/            # Custom hooks
 │   ├── pages/            # Páginas principales
 │   ├── router/           # Configuración de rutas
@@ -126,7 +122,7 @@ lucre-huacarpay-web/
 │   ├── services/         # Servicios y API
 │   ├── types/            # Definiciones de tipos
 │   ├── utils/            # Utilidades y helpers
-│   ├── app.tsx              # Componente principal
+│   ├── App.tsx              # Componente principal
 │   └── main.tsx             # Punto de entrada
 ├── .gitignore            # Archivos ignorados por Git
 ├── netlify.toml          # Configuración de Netlify

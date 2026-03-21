@@ -1,4 +1,4 @@
-import { apiClient, ApiResponse } from './apiClient';
+import { apiClient, type ApiResponse } from './apiClient';
 
 export interface ContactFormData {
   name: string;
@@ -28,27 +28,27 @@ export interface NewsletterSubscription {
 
 class ContactService {
   async submitContactForm(formData: ContactFormData): Promise<ApiResponse<ContactResponse>> {
-    return await apiClient.post<ContactResponse>('/contact', formData);
+    return apiClient.post<ContactResponse>('/contact', formData);
   }
 
   async subscribeToNewsletter(subscription: NewsletterSubscription): Promise<ApiResponse<{ subscribed: boolean }>> {
-    return await apiClient.post<{ subscribed: boolean }>('/newsletter/subscribe', subscription);
+    return apiClient.post<{ subscribed: boolean }>('/newsletter/subscribe', subscription);
   }
 
   async unsubscribeFromNewsletter(email: string): Promise<ApiResponse<{ unsubscribed: boolean }>> {
-    return await apiClient.post<{ unsubscribed: boolean }>('/newsletter/unsubscribe', { email });
+    return apiClient.post<{ unsubscribed: boolean }>('/newsletter/unsubscribe', { email });
   }
 
   async getContactMessages(page: number = 1, limit: number = 10) {
-    return await apiClient.getPaginated<ContactResponse[]>('/admin/contact', page, limit);
+    return apiClient.getPaginated<ContactResponse[]>('/admin/contact', page, limit);
   }
 
   async updateMessageStatus(messageId: string, status: 'read' | 'replied'): Promise<ApiResponse<ContactResponse>> {
-    return await apiClient.patch<ContactResponse>(`/admin/contact/${messageId}`, { status });
+    return apiClient.patch<ContactResponse>(`/admin/contact/${messageId}`, { status });
   }
 
   async deleteContactMessage(messageId: string): Promise<ApiResponse<{ deleted: boolean }>> {
-    return await apiClient.delete<{ deleted: boolean }>(`/admin/contact/${messageId}`);
+    return apiClient.delete<{ deleted: boolean }>(`/admin/contact/${messageId}`);
   }
 
   async sendVolunteerInterest(formData: {
@@ -59,7 +59,7 @@ class ContactService {
     availability: string;
     message?: string;
   }): Promise<ApiResponse<{ received: boolean }>> {
-    return await apiClient.post<{ received: boolean }>('/volunteer/interest', formData);
+    return apiClient.post<{ received: boolean }>('/volunteer/interest', formData);
   }
 
   async sendCollaborationRequest(formData: {
@@ -69,7 +69,7 @@ class ContactService {
     type: 'academic' | 'corporate' | 'ngo' | 'other';
     message: string;
   }): Promise<ApiResponse<{ received: boolean }>> {
-    return await apiClient.post<{ received: boolean }>('/collaboration/request', formData);
+    return apiClient.post<{ received: boolean }>('/collaboration/request', formData);
   }
 }
 

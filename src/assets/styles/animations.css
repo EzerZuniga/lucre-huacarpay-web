@@ -53,10 +53,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 20px rgba(47, 120, 152, 0.38);
   }
   50% {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+    box-shadow: 0 0 30px rgba(91, 109, 62, 0.65);
   }
 }
 
@@ -106,7 +106,7 @@
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #1e40af 0%, #059669 100%);
+  background: linear-gradient(135deg, #1f5169 0%, #5b6d3e 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

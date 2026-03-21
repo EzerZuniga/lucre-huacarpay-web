@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from '../components/ui/Button';
-import Input from '../components/ui/Input';
+import { ROUTES } from '@/config';
+import { Button, Input } from '@/components';
 import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
 
 const ContactoSection: React.FC = () => {
@@ -25,12 +25,12 @@ const ContactoSection: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="py-20 bg-slate-50">
+    <section id="contacto" className="py-20 bg-wetland-mist/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">Contáctanos</h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold text-wetland-ink mb-4">Contáctanos</h2>
+          <div className="section-divider"></div>
+          <p className="text-xl text-wetland-ink-soft max-w-3xl mx-auto">
             ¿Tienes preguntas sobre la Laguna Huacarpay, quieres visitarnos o colaborar con la conservación? Escríbenos.
           </p>
         </div>
@@ -90,58 +90,58 @@ const ContactoSection: React.FC = () => {
           
           {/* Información de contacto */}
           <div className="space-y-8">
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold mb-6 text-slate-800">Información de contacto</h3>
+            <div className="section-surface p-8">
+              <h3 className="text-2xl font-bold mb-6 text-wetland-ink">Información de contacto</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-full mr-4">
-                    <FiMail className="text-blue-600 text-xl" />
+                  <div className="bg-wetland-mist p-3 rounded-full mr-4">
+                    <FiMail className="text-wetland-lagoon text-xl" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-lg text-slate-800 mb-1">Email</h4>
-                    <p className="text-slate-600">info@lagunahuacarpay.org</p>
-                    <p className="text-slate-600">conservacion@lagunahuacarpay.org</p>
+                    <h4 className="font-bold text-lg text-wetland-ink mb-1">Email</h4>
+                    <p className="text-wetland-ink-soft">info@lagunahuacarpay.org</p>
+                    <p className="text-wetland-ink-soft">conservacion@lagunahuacarpay.org</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-full mr-4">
-                    <FiPhone className="text-blue-600 text-xl" />
+                  <div className="bg-wetland-mist p-3 rounded-full mr-4">
+                    <FiPhone className="text-wetland-lagoon text-xl" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-lg text-slate-800 mb-1">Teléfono</h4>
-                    <p className="text-slate-600">+51 984 123 456</p>
-                    <p className="text-slate-600">+51 987 654 321</p>
+                    <h4 className="font-bold text-lg text-wetland-ink mb-1">Teléfono</h4>
+                    <p className="text-wetland-ink-soft">+51 984 123 456</p>
+                    <p className="text-wetland-ink-soft">+51 987 654 321</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-full mr-4">
-                    <FiMapPin className="text-blue-600 text-xl" />
+                  <div className="bg-wetland-mist p-3 rounded-full mr-4">
+                    <FiMapPin className="text-wetland-lagoon text-xl" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-lg text-slate-800 mb-1">Ubicación</h4>
-                    <p className="text-slate-600">Laguna de Huacarpay</p>
-                    <p className="text-slate-600">Lucre, Valle Sur del Cusco, Perú</p>
+                    <h4 className="font-bold text-lg text-wetland-ink mb-1">Ubicación</h4>
+                    <p className="text-wetland-ink-soft">Laguna de Huacarpay</p>
+                    <p className="text-wetland-ink-soft">Lucre, Valle Sur del Cusco, Perú</p>
                   </div>
                 </div>
               </div>
             </div>
             
             {/* Mapa de ubicación */}
-            <div className="bg-gradient-to-br from-blue-600 to-green-600 rounded-xl p-8 text-white">
+            <div className="bg-gradient-to-br from-wetland-lagoon to-wetland-moss rounded-xl p-8 text-wetland-foam">
               <div className="text-center">
                 <FiMapPin size={48} className="mx-auto mb-4" />
                 <h4 className="text-xl font-bold mb-2">Ubicación de la Laguna</h4>
-                <p className="text-blue-100 mb-4">
+                <p className="text-wetland-sand mb-4">
                   A 45 minutos del centro de Cusco<br />
                   Acceso por carretera hacia el Valle Sur
                 </p>
                 <Button 
                   variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-slate-900"
-                  to="/visitanos"
+                  className="border-wetland-foam text-wetland-foam hover:bg-wetland-foam hover:text-wetland-ink"
+                  to={ROUTES.VISIT_US}
                 >
                   Cómo llegar
                 </Button>
@@ -149,9 +149,9 @@ const ContactoSection: React.FC = () => {
             </div>
 
             {/* Horarios de atención */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h4 className="font-bold text-lg text-slate-800 mb-4">Horarios de atención</h4>
-              <div className="space-y-2 text-slate-600">
+            <div className="section-surface p-6">
+              <h4 className="font-bold text-lg text-wetland-ink mb-4">Horarios de atención</h4>
+              <div className="space-y-2 text-wetland-ink-soft">
                 <div className="flex justify-between">
                   <span>Lunes - Viernes:</span>
                   <span className="font-medium">8:00 AM - 6:00 PM</span>

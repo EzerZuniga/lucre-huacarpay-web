@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 interface InputProps {
   label?: string;
@@ -12,6 +12,7 @@ interface InputProps {
   disabled?: boolean;
   rows?: number;
   name?: string;
+  id?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -26,21 +27,26 @@ const Input: React.FC<InputProps> = ({
   disabled = false,
   rows = 4,
   name,
+  id,
 }) => {
-  const baseClasses = "w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300";
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
+
+  const baseClasses = "w-full px-4 py-3 border border-wetland-sand rounded-xl focus:outline-none focus:ring-2 focus:ring-wetland-lagoon focus:border-transparent transition-all duration-300";
   const errorClasses = error ? "border-red-500 focus:ring-red-500" : "";
-  const disabledClasses = disabled ? "bg-slate-100 cursor-not-allowed opacity-60" : "bg-white";
+  const disabledClasses = disabled ? "bg-wetland-sand/60 cursor-not-allowed opacity-60" : "bg-wetland-foam";
 
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-sm font-medium text-slate-700 mb-2">
+        <label htmlFor={inputId} className="block text-sm font-medium text-wetland-ink mb-2">
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
       {type === 'textarea' ? (
         <textarea
+          id={inputId}
           name={name}
           placeholder={placeholder}
           value={value}
@@ -51,6 +57,7 @@ const Input: React.FC<InputProps> = ({
         />
       ) : (
         <input
+          id={inputId}
           type={type}
           name={name}
           placeholder={placeholder}

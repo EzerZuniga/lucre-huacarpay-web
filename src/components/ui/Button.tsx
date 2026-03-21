@@ -1,52 +1,79 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, type LinkProps } from 'react-router-dom';
 
-interface ButtonProps {
+interface BaseButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'accent' | 'outline';
-  to?: string;
-  onClick?: () => void;
   className?: string;
-  type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ 
-  children, 
-  variant = 'primary',
-  to,
-  onClick,
-  className = '',
-  type = 'button',
-  disabled = false,
-  ...props 
-}) => {
-  const baseClasses = "px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2";
-  
-  const variantClasses = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 disabled:bg-blue-400",
-    secondary: "bg-slate-600 text-white hover:bg-slate-700 focus:ring-slate-500 disabled:bg-slate-400",
-    accent: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 disabled:bg-green-400",
-    outline: "border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500 disabled:border-blue-400 disabled:text-blue-400",
+type LinkButtonProps = BaseButtonProps & Omit<LinkProps, 'to' | 'className' | 'children'> & {
+  to: string;
+  type?: never;
+};
+
+type NativeButtonProps = BaseButtonProps &
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className'> & {
+    to?: undefined;
   };
-  
-  const classes = `${baseClasses} ${variantClasses[variant]} ${disabled ? 'cursor-not-allowed' : ''} ${className}`;
-  
-  if (to) {
+
+type ButtonProps = LinkButtonProps | NativeButtonProps;
+
+const Button: React.FC<ButtonProps> = (props) => {
+  const baseClasses =
+    'px-6 py-3 rounded-xl font-semibold tracking-wide transition-all duration-300 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-wetland-ivory';
+
+  const variantClasses = {
+    primary: 'bg-wetland-cta text-wetland-ink hover:bg-wetland-cta-dark focus:ring-wetland-cta disabled:bg-wetland-earth',
+    secondary: 'bg-wetland-moss text-wetland-foam hover:bg-wetland-moss-dark focus:ring-wetland-moss disabled:bg-wetland-moss/70',
+    accent: 'bg-wetland-lagoon text-wetland-foam hover:bg-wetland-lagoon-dark focus:ring-wetland-lagoon disabled:bg-wetland-lagoon/70',
+    outline:
+      'border-2 border-wetland-lagoon text-wetland-lagoon hover:bg-wetland-lagoon hover:text-wetland-foam focus:ring-wetland-lagoon disabled:border-wetland-lagoon/50 disabled:text-wetland-lagoon/50',
+  };
+
+  if ('to' in props && props.to) {
+    const {
+      to,
+      children,
+      variant = 'primary',
+      className = '',
+      disabled = false,
+      ...linkProps
+    } = props;
+
+    const classes = `${baseClasses} ${variantClasses[variant]} ${disabled ? 'cursor-not-allowed' : ''} ${className}`;
+
     return (
-      <Link to={to} className={classes} {...props}>
+      <Link
+        to={to}
+        className={`${classes} ${disabled ? 'pointer-events-none opacity-60' : ''}`}
+        aria-disabled={disabled || undefined}
+        tabIndex={disabled ? -1 : undefined}
+        {...linkProps}
+      >
         {children}
       </Link>
     );
   }
-  
+
+  const {
+    type = 'button',
+    children,
+    variant = 'primary',
+    className = '',
+    disabled = false,
+    ...buttonProps
+  } = props as NativeButtonProps;
+
+  const classes = `${baseClasses} ${variantClasses[variant]} ${disabled ? 'cursor-not-allowed' : ''} ${className}`;
+
   return (
     <button 
       type={type}
       className={classes} 
-      onClick={onClick} 
       disabled={disabled}
-      {...props}
+      {...buttonProps}
     >
       {children}
     </button>

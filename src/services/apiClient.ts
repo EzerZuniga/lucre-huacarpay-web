@@ -1,16 +1,22 @@
 import axios from 'axios';
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import type {
+  AxiosInstance,
+  AxiosProgressEvent,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.lagunahuacarpay.org/v1';
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   data: T;
   message?: string;
   success: boolean;
   status: number;
 }
 
-export interface PaginatedResponse<T = any> extends ApiResponse<T> {
+export interface PaginatedResponse<T = unknown> extends ApiResponse<T> {
   pagination: {
     page: number;
     limit: number;
@@ -43,7 +49,7 @@ class ApiClient {
         }
         return config;
       },
-      (error: any) => {
+      (error: unknown) => {
         return Promise.reject(error);
       }
     );
@@ -52,7 +58,7 @@ class ApiClient {
       (response: AxiosResponse) => {
         return response;
       },
-      (error: any) => {
+      (error: { response?: { status?: number } }) => {
         if (error.response?.status === 401) {
           localStorage.removeItem('auth_token');
           window.dispatchEvent(new Event('unauthorized'));
@@ -62,32 +68,32 @@ class ApiClient {
     );
   }
 
-  async get<T = any>(url: string, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
     const response = await this.client.get<ApiResponse<T>>(url, config);
     return response.data;
   }
 
-  async post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async post<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
     const response = await this.client.post<ApiResponse<T>>(url, data, config);
     return response.data;
   }
 
-  async put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async put<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
     const response = await this.client.put<ApiResponse<T>>(url, data, config);
     return response.data;
   }
 
-  async patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async patch<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
     const response = await this.client.patch<ApiResponse<T>>(url, data, config);
     return response.data;
   }
 
-  async delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async delete<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
     const response = await this.client.delete<ApiResponse<T>>(url, config);
     return response.data;
   }
 
-  async uploadFile<T = any>(url: string, file: File, onProgress?: (progress: number) => void): Promise<ApiResponse<T>> {
+  async uploadFile<T = unknown>(url: string, file: File, onProgress?: (progress: number) => void): Promise<ApiResponse<T>> {
     const formData = new FormData();
     formData.append('file', file);
 
@@ -95,7 +101,7 @@ class ApiClient {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-      onUploadProgress: (progressEvent: any) => {
+      onUploadProgress: (progressEvent: AxiosProgressEvent) => {
         if (onProgress && progressEvent.total) {
           const progress = (progressEvent.loaded / progressEvent.total) * 100;
           onProgress(Math.round(progress));
@@ -106,7 +112,7 @@ class ApiClient {
     return response.data;
   }
 
-  async getPaginated<T = any>(
+  async getPaginated<T = unknown>(
     url: string, 
     page: number = 1, 
     limit: number = 10,

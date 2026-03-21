@@ -1,7 +1,6 @@
 import React from 'react';
-import AppRouter from './router/AppRouter';
-import { ThemeProvider } from './contexts/ThemeContext';
-import { LanguageProvider } from './contexts/LanguageContext';
+import { LanguageProvider, ThemeProvider } from '@/contexts';
+import { AppRouter } from '@/router';
 
 const App: React.FC = () => {
   return (
