@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+@import './animations.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans bg-wetland-ivory text-wetland-ink antialiased;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgb(220 233 231 / 55%), transparent 45%),
+      radial-gradient(circle at 85% 100%, rgb(232 221 200 / 45%), transparent 40%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight text-wetland-ink;
+  }
+
+  p {
+    @apply text-wetland-ink-soft;
+  }
+
+  ::selection {
+    @apply bg-wetland-lagoon text-wetland-foam;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-padding {
+    @apply py-20;
+  }
+
+  .section-divider {
+    @apply w-24 h-1 rounded-full bg-wetland-moss mx-auto mb-6;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-wetland-lagoon to-wetland-moss bg-clip-text text-transparent;
+  }
+  
+  .bg-gradient-primary {
+    @apply bg-gradient-to-br from-wetland-lagoon-dark via-wetland-ink to-wetland-moss-dark;
+  }
+  
+  .bg-gradient-eco {
+    @apply bg-gradient-to-br from-wetland-lagoon to-wetland-moss;
+  }
+
+  .section-surface {
+    @apply bg-wetland-foam border border-wetland-sand/70 rounded-2xl shadow-lg;
+  }
+}

@@ -1,10 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './assets/styles/globals.css';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { AppProviders } from '@/app/providers';
+import { AppRouter } from '@/app/routes';
+import '@/shared/assets/styles/globals.css';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+  throw new Error('Root element not found. Make sure <div id="root"> exists in index.html');
+}
+
+createRoot(rootElement).render(
+  <StrictMode>
+    <AppProviders>
+      <AppRouter />
+    </AppProviders>
+  </StrictMode>,
 );
