@@ -2,18 +2,28 @@ import { useState } from 'react';
 import { Button, Card, Modal, SectionHeader } from '@/shared/ui';
 import { GALLERY_CATEGORIES, GALLERY_ITEMS } from '@/entities/gallery';
 
+const PAGE_SIZE = 8;
+
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
 
-  const displayedItems = showAll ? GALLERY_ITEMS : GALLERY_ITEMS.slice(0, 8);
-  const filteredItems =
+  // Filter first, then paginate — correct order
+  const allFiltered =
     activeCategory === 'all'
-      ? displayedItems
-      : displayedItems.filter((item) => item.category === activeCategory);
+      ? GALLERY_ITEMS
+      : GALLERY_ITEMS.filter((item) => item.category === activeCategory);
+
+  const displayedItems = showAll ? allFiltered : allFiltered.slice(0, PAGE_SIZE);
+  const hasMore = !showAll && allFiltered.length > PAGE_SIZE;
 
   const selectedItem = GALLERY_ITEMS.find((item) => item.id === selectedImage);
+
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCategory(categoryId);
+    setShowAll(false); // Reset pagination on category change
+  };
 
   return (
     <div className="min-h-screen pt-20 bg-wetland-ivory">
@@ -28,7 +38,7 @@ export default function GalleryPage() {
           {GALLERY_CATEGORIES.map((category) => (
             <button
               key={category.id}
-              onClick={() => setActiveCategory(category.id)}
+              onClick={() => handleCategoryChange(category.id)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 activeCategory === category.id
                   ? 'bg-wetland-lagoon text-wetland-foam shadow-lg'
@@ -42,7 +52,7 @@ export default function GalleryPage() {
 
         {/* Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-          {filteredItems.map((item) => (
+          {displayedItems.map((item) => (
             <Card
               key={item.id}
               className="cursor-pointer transform hover:scale-105 transition-all duration-300"
@@ -61,7 +71,7 @@ export default function GalleryPage() {
         </div>
 
         {/* Load More */}
-        {!showAll && GALLERY_ITEMS.length > 8 && (
+        {hasMore && (
           <div className="flex justify-center">
             <Button variant="outline" onClick={() => setShowAll(true)} className="px-8 py-3">
               Ver más imágenes

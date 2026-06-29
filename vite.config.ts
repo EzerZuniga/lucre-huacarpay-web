@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
   plugins: [react()],
@@ -21,13 +21,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (!id.includes('node_modules')) return undefined
-          if (id.includes('react-router-dom') || id.includes('react-router')) return 'router'
-          if (id.includes('react-icons')) return 'icons'
-          if (id.includes('axios')) return 'http'
-          if (id.includes('zod')) return 'validation'
-          if (id.includes('react')) return 'vendor'
-          return undefined
+          if (!id.includes('node_modules')) return undefined;
+          if (id.includes('react-router-dom') || id.includes('react-router')) return 'router';
+          if (id.includes('react-icons')) return 'icons';
+          if (id.includes('axios')) return 'http';
+          if (id.includes('zod')) return 'validation';
+          if (id.includes('react')) return 'vendor';
+          return undefined;
         },
       },
     },
@@ -36,4 +36,4 @@ export default defineConfig({
     port: 4173,
     host: true,
   },
-})
+});

@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
-import { Header } from '@/features/navigation';
-import { Footer } from '@/features/navigation';
+import { Header, Footer } from '@/widgets/navigation';
 import { useScrollToTop } from '@/shared/hooks';
 
 interface RootLayoutProps {

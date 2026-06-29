@@ -1,4 +1,5 @@
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import { SITE_CONFIG } from '@/shared/constants';
 
 export default function ContactInfo() {
   return (
@@ -12,8 +13,12 @@ export default function ContactInfo() {
           </div>
           <div>
             <h4 className="font-bold text-lg text-wetland-ink mb-1">Email</h4>
-            <p className="text-wetland-ink-soft">info@lagunahuacarpay.org</p>
-            <p className="text-wetland-ink-soft">conservacion@lagunahuacarpay.org</p>
+            <a
+              href={`mailto:${SITE_CONFIG.email}`}
+              className="text-wetland-ink-soft hover:text-wetland-lagoon transition-colors"
+            >
+              {SITE_CONFIG.email}
+            </a>
           </div>
         </div>
 
@@ -23,8 +28,12 @@ export default function ContactInfo() {
           </div>
           <div>
             <h4 className="font-bold text-lg text-wetland-ink mb-1">Teléfono</h4>
-            <p className="text-wetland-ink-soft">+51 984 123 456</p>
-            <p className="text-wetland-ink-soft">+51 987 654 321</p>
+            <a
+              href={`tel:${SITE_CONFIG.phone.replace(/\s/g, '')}`}
+              className="text-wetland-ink-soft hover:text-wetland-lagoon transition-colors"
+            >
+              {SITE_CONFIG.phone}
+            </a>
           </div>
         </div>
 
@@ -34,8 +43,7 @@ export default function ContactInfo() {
           </div>
           <div>
             <h4 className="font-bold text-lg text-wetland-ink mb-1">Ubicación</h4>
-            <p className="text-wetland-ink-soft">Laguna de Huacarpay</p>
-            <p className="text-wetland-ink-soft">Lucre, Valle Sur del Cusco, Perú</p>
+            <p className="text-wetland-ink-soft">{SITE_CONFIG.address}</p>
           </div>
         </div>
       </div>

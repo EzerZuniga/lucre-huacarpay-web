@@ -1,42 +1,17 @@
 import { FiCheckCircle, FiBarChart2, FiTarget, FiUsers } from 'react-icons/fi';
 import { Button, Card, SectionHeader } from '@/shared/ui';
 import { ROUTES } from '@/app/routes';
+import {
+  OBJECTIVES,
+  CONSERVATION_ACTIONS,
+  IMPACT_INDICATORS,
+  PROBLEM_STRATEGIES,
+} from '@/entities/project';
 
-// ─── Data ────────────────────────────────────────────────────────────────────
-
-const OBJECTIVES = [
-  'Conservar y proteger el ecosistema del humedal Ramsar',
-  'Promover el turismo ecológico responsable en la laguna',
-  'Fomentar la participación comunitaria en actividades de conservación',
-  'Incrementar la biodiversidad con especies nativas',
-  'Reducir la contaminación y residuos en el área protegida',
-  'Educar a visitantes sobre la importancia del ecosistema',
-] as const;
-
-const CONSERVATION_ACTIONS = [
-  'Reforestación con especies nativas (totora, qantu, mutuy)',
-  'Instalación de señalética educativa y informativa',
-  'Programas de limpieza y mantenimiento periódico',
-  'Monitoreo constante de especies de flora y fauna',
-  'Control de especies invasoras',
-  'Restauración de áreas degradadas',
-] as const;
-
-interface ImpactIndicator {
-  readonly metric: string;
-  readonly target: string;
-  readonly current: string;
+function calcProgress(current: string, target: string): number {
+  const ratio = parseFloat(current) / parseFloat(target);
+  return Math.min(isNaN(ratio) ? 0 : ratio * 100, 100);
 }
-
-const IMPACT_INDICATORS: readonly ImpactIndicator[] = [
-  { metric: 'Reducción de residuos sólidos', target: '60%', current: '45%' },
-  { metric: 'Incremento de visitantes responsables', target: '200%', current: '150%' },
-  { metric: 'Especies de aves monitoreadas', target: '40+', current: '35+' },
-  { metric: 'Área reforestada (hectáreas)', target: '5', current: '3.2' },
-  { metric: 'Participación comunitaria', target: '80%', current: '65%' },
-] as const;
-
-// ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function ProjectPage() {
   return (
@@ -56,12 +31,9 @@ export default function ProjectPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {OBJECTIVES.map((objective, index) => (
-                <div key={index} className="flex items-start p-4 bg-wetland-mist/55 rounded-lg">
-                  <FiCheckCircle
-                    className="text-wetland-moss mt-1 mr-3 flex-shrink-0"
-                    size={20}
-                  />
+              {OBJECTIVES.map((objective) => (
+                <div key={objective} className="flex items-start p-4 bg-wetland-mist/55 rounded-lg">
+                  <FiCheckCircle className="text-wetland-moss mt-1 mr-3 flex-shrink-0" size={20} />
                   <span className="text-wetland-ink-soft">{objective}</span>
                 </div>
               ))}
@@ -78,8 +50,8 @@ export default function ProjectPage() {
             </div>
 
             <ul className="space-y-3">
-              {CONSERVATION_ACTIONS.map((action, index) => (
-                <li key={index} className="flex items-start">
+              {CONSERVATION_ACTIONS.map((action) => (
+                <li key={action} className="flex items-start">
                   <FiCheckCircle
                     className="text-wetland-lagoon mt-1 mr-3 flex-shrink-0"
                     size={20}
@@ -97,9 +69,9 @@ export default function ProjectPage() {
             </div>
 
             <div className="space-y-4">
-              {IMPACT_INDICATORS.map((indicator, index) => (
+              {IMPACT_INDICATORS.map((indicator) => (
                 <div
-                  key={index}
+                  key={indicator.metric}
                   className="bg-wetland-foam p-4 rounded-lg border border-wetland-sand"
                 >
                   <div className="flex justify-between items-center mb-2">
@@ -114,7 +86,7 @@ export default function ProjectPage() {
                     <div
                       className="bg-wetland-earth h-2 rounded-full transition-all duration-500"
                       style={{
-                        width: `${(parseFloat(indicator.current) / parseFloat(indicator.target)) * 100}%`,
+                        width: `${calcProgress(indicator.current, indicator.target)}%`,
                       }}
                     />
                   </div>
@@ -138,46 +110,27 @@ export default function ProjectPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-wetland-sand">
-                <tr className="hover:bg-wetland-mist/35 transition-colors">
-                  <td className="py-4 px-4 align-top">
-                    <strong>Falta de embellecimiento y valorización</strong>
-                  </td>
-                  <td className="py-4 px-4 align-top text-wetland-ink-soft">
-                    <ul className="list-disc list-inside space-y-1">
-                      <li>90% de la población apoya el embellecimiento de la laguna</li>
-                      <li>Potencial turístico subutilizado</li>
-                      <li>Falta de infraestructura para visitantes</li>
-                    </ul>
-                  </td>
-                  <td className="py-4 px-4 align-top text-wetland-ink-soft">
-                    <ul className="list-disc list-inside space-y-1">
-                      <li>Reforestación con especies nativas (totora, qantu, mutuy)</li>
-                      <li>Instalación de miradores y senderos ecológicos</li>
-                      <li>Programas de educación ambiental</li>
-                      <li>Señalética interpretativa bilingüe</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr className="hover:bg-wetland-mist/35 transition-colors">
-                  <td className="py-4 px-4 align-top">
-                    <strong>Contaminación y residuos</strong>
-                  </td>
-                  <td className="py-4 px-4 align-top text-wetland-ink-soft">
-                    <ul className="list-disc list-inside space-y-1">
-                      <li>Acumulación de residuos sólidos en orillas</li>
-                      <li>Falta de contenedores adecuados</li>
-                      <li>Contaminación por actividades humanas</li>
-                    </ul>
-                  </td>
-                  <td className="py-4 px-4 align-top text-wetland-ink-soft">
-                    <ul className="list-disc list-inside space-y-1">
-                      <li>Instalación de estaciones de reciclaje</li>
-                      <li>Jornadas mensuales de limpieza comunitaria</li>
-                      <li>Campañas de concientización</li>
-                      <li>Monitoreo de calidad del agua</li>
-                    </ul>
-                  </td>
-                </tr>
+                {PROBLEM_STRATEGIES.map((row) => (
+                  <tr key={row.problem} className="hover:bg-wetland-mist/35 transition-colors">
+                    <td className="py-4 px-4 align-top">
+                      <strong>{row.problem}</strong>
+                    </td>
+                    <td className="py-4 px-4 align-top text-wetland-ink-soft">
+                      <ul className="list-disc list-inside space-y-1">
+                        {row.data.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </td>
+                    <td className="py-4 px-4 align-top text-wetland-ink-soft">
+                      <ul className="list-disc list-inside space-y-1">
+                        {row.strategies.map((strategy) => (
+                          <li key={strategy}>{strategy}</li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

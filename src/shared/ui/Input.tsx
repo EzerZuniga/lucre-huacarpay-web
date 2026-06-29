@@ -34,45 +34,43 @@ export default function Input({
 }: InputProps) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
+  const errorId = `${inputId}-error`;
 
   const errorClasses = error ? 'border-red-500 focus:ring-red-500' : '';
   const disabledClasses = disabled ? 'bg-wetland-sand/60 cursor-not-allowed opacity-60' : 'bg-wetland-foam';
-
   const fieldClasses = `${BASE_CLASSES} ${errorClasses} ${disabledClasses} ${className}`;
+
+  const sharedProps = {
+    id: inputId,
+    name,
+    placeholder,
+    value,
+    onChange,
+    disabled,
+    required,
+    'aria-required': required || undefined,
+    'aria-invalid': error ? (true as const) : undefined,
+    'aria-describedby': error ? errorId : undefined,
+    className: fieldClasses,
+  };
 
   return (
     <div className="w-full">
       {label && (
         <label htmlFor={inputId} className="block text-sm font-medium text-wetland-ink mb-2">
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
         </label>
       )}
       {type === 'textarea' ? (
-        <textarea
-          id={inputId}
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          rows={rows}
-          disabled={disabled}
-          className={`${fieldClasses} resize-vertical`}
-        />
+        <textarea {...sharedProps} rows={rows} className={`${fieldClasses} resize-vertical`} />
       ) : (
-        <input
-          id={inputId}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-          className={fieldClasses}
-        />
+        <input {...sharedProps} type={type} />
       )}
       {error && (
-        <p className="text-red-600 text-sm mt-1 flex items-center">{error}</p>
+        <p id={errorId} role="alert" className="text-red-600 text-sm mt-1 flex items-center">
+          {error}
+        </p>
       )}
     </div>
   );

@@ -1,5 +1,6 @@
 import { Button, Card, SectionHeader } from '@/shared/ui';
 import { TEAM_MEMBERS, TEAM_METHODOLOGIES } from '@/entities/team';
+import { ROUTES } from '@/app/routes';
 
 export default function TeamPage() {
   return (
@@ -27,9 +28,9 @@ export default function TeamPage() {
               </div>
               <p className="text-wetland-ink-soft flex-grow mb-4 leading-relaxed">{member.bio}</p>
               <div className="flex space-x-3 pt-4 border-t border-wetland-sand">
-                <button className="text-wetland-ink-soft hover:text-wetland-lagoon transition-colors text-sm font-medium">
+                <Button to={ROUTES.CONTACT} variant="outline" className="text-sm px-4 py-2">
                   Contactar
-                </button>
+                </Button>
               </div>
             </Card>
           ))}
@@ -60,7 +61,7 @@ export default function TeamPage() {
           <p className="text-wetland-ink-soft text-lg">
             ¿Quieres unirte a nuestro equipo o colaborar con el proyecto?
           </p>
-          <Button variant="primary" className="mt-4 px-8 py-3">
+          <Button to={ROUTES.CONTACT} variant="primary" className="mt-4 px-8 py-3">
             Contáctanos
           </Button>
         </div>
