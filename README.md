@@ -1,251 +1,202 @@
-# Laguna Huacarpay - Sector Lucre
+# LAGUNA HUACARPAY — Humedal Ramsar Lucre
 
-<div align="center">
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-deployed-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-2ea44f?style=for-the-badge)
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![React](https://img.shields.io/badge/React-18.2.0-61dafb.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-3178c6.svg)
-![Vite](https://img.shields.io/badge/Vite-8.0.1-646cff.svg)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38b2ac.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+Sitio web oficial del proyecto de conservación del humedal Ramsar **Laguna Huacarpay**, ubicado en el distrito de Lucre, Valle Sur del Cusco, Perú. La plataforma divulga la biodiversidad del ecosistema, facilita la planificación de visitas y conecta a la comunidad con iniciativas de conservación ambiental.
 
-**Sitio web oficial del proyecto Laguna Huacarpay en el sector Lucre, Cusco - Perú**
-
-[Demo en vivo](https://lagunahuacarpay.netlify.app) · [📋 Reportar Bug](https://github.com/EzerZuniga/lucre-huacarpay-web/issues) · [💡 Solicitar Feature](https://github.com/EzerZuniga/lucre-huacarpay-web/issues)
-
-</div>
+**[🌐 Demo en vivo](https://humedal-lucre-huacarpay.netlify.app)** · **[🐛 Reportar Bug](https://github.com/EzerZuniga/lucre-huacarpay-web/issues)** · **[💡 Solicitar Feature](https://github.com/EzerZuniga/lucre-huacarpay-web/issues)**
 
 ---
 
-## Acerca del Proyecto
+## Tabla de contenidos
 
-El sitio web de la Laguna Huacarpay es una plataforma digital moderna que promueve el turismo sostenible y la conservación de uno de los ecosistemas acuáticos más importantes de la región de Cusco. La laguna, ubicada en el sector Lucre, es reconocida por su biodiversidad única y su importancia cultural e histórica.
-
-### Objetivos
-
-- **Promover el turismo responsable** en la Laguna Huacarpay
-- **Educar** sobre la importancia ecológica del ecosistema
-- **Conectar** a visitantes con experiencias auténticas locales
-- **Preservar** el patrimonio natural y cultural de la región
-
-### Características Principales
-
-- **Sitio web responsivo** - Optimizado para todos los dispositivos
-- **Rendimiento superior** - Construido con Vite y React 18
-- **Diseño moderno** - Interfaz elegante con Tailwind CSS
-- **Multiidioma** - Soporte para español e inglés
-- **PWA Ready** - Experiencia de aplicación nativa
-- **SEO Optimizado** - Mejor visibilidad en buscadores
-- **Accesible** - Cumple con estándares WCAG 2.1
-- **Modo oscuro** - Experiencia de usuario personalizable
+1. [Características clave](#características-clave)
+2. [Arquitectura y stack](#arquitectura-y-stack)
+3. [Comenzar](#comenzar)
+4. [Scripts disponibles](#scripts-disponibles)
+5. [Estructura del proyecto](#estructura-del-proyecto)
+6. [Despliegue](#despliegue)
+7. [Guía de contribución](#guía-de-contribución)
+8. [Equipo](#equipo)
+9. [Licencia](#licencia)
 
 ---
 
-## Tecnologías Utilizadas
+## Características clave
 
-### Frontend
-- **[React 18](https://reactjs.org/)** - Biblioteca de UI con Concurrent Features
-- **[TypeScript](https://www.typescriptlang.org/)** - Tipado estático para JavaScript
-- **[Vite](https://vitejs.dev/)** - Build tool ultrarrápido
-- **[React Router DOM](https://reactrouter.com/)** - Enrutamiento declarativo
-- **[Tailwind CSS](https://tailwindcss.com/)** - Framework de CSS utility-first
-- **[React Icons](https://react-icons.github.io/)** - Biblioteca de iconos
-
-### Tools & DevOps
-- **[Netlify](https://www.netlify.com/)** - Hosting y despliegue continuo
-- **[ESLint](https://eslint.org/)** - Linting de código
-- **[Axios](https://axios-http.com/)** - Cliente HTTP
+- **Galería fotográfica interactiva**: navegación por categorías (paisajes, fauna, flora) con lightbox propio, navegación por teclado y carga lazy de imágenes.
+- **Información de visita completa**: tarifas en tiempo real, horarios, temporadas y guía de transporte desde Cusco.
+- **Formulario de contacto validado**: validación en cliente con Zod, manejo de estados (carga, éxito, error) y suscripción a boletín.
+- **Preguntas frecuentes**: acordeón accesible con `aria-expanded` y animaciones CSS suaves.
+- **Diseño responsive y accesible**: sistema de diseño propio basado en Tailwind, paleta wetland, sombras multicapa y animaciones de entrada con `IntersectionObserver`.
+- **SEO y rendimiento**: metaetiquetas completas (Open Graph, Twitter Card, Schema.org `TouristAttraction`), fuentes optimizadas con `font-display: swap` y code splitting automático vía Vite.
 
 ---
 
-## Inicio Rápido
+## Arquitectura y stack
 
-### Prerrequisitos
+| Capa           | Tecnologías                                          | Descripción                                                                     |
+| -------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Frontend       | React 18, TypeScript 5.2, React Router DOM v7        | Componentes funcionales, lazy loading por página y tipado estricto end-to-end.  |
+| Estilos        | Tailwind CSS 3, CSS custom properties                | Paleta de color semántica (`wetland-*`), sistema de sombras y animaciones CSS.  |
+| Validación     | Zod 4                                                | Esquemas de validación reutilizables para formularios y tipos derivados.        |
+| HTTP           | Axios 1                                              | Cliente HTTP con interceptores; preparado para conectar servicios REST.         |
+| Build          | Vite 6, ESLint                                       | HMR instantáneo, builds optimizadas con tree-shaking y análisis de bundle.     |
+| Infraestructura| Netlify, `netlify.toml`                              | CI/CD automático con redirecciones SPA y headers de caché configurados.         |
 
-Asegúrate de tener instalado:
+> El proyecto adopta **Feature-Sliced Design (FSD)**: `app` concentra providers y rutas; `entities` define datos y tipos de dominio; `features` encapsula lógica de interacción; `shared` expone UI reutilizable, hooks y utilidades; `widgets` compone bloques de UI complejos; `pages` ensambla el resultado.
 
-- **Node.js** (versión 18 o superior)
-- **npm** o **yarn**
+---
+
+## Comenzar
+
+### Requisitos previos
+
+- **Node.js 18 LTS** o superior
+- **npm 9+**
 - **Git**
 
 ### Instalación
 
-1. **Clona el repositorio**
-   ```bash
-   git clone https://github.com/EzerZuniga/lucre-huacarpay-web.git
-   cd lucre-huacarpay-web
-   ```
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/EzerZuniga/lucre-huacarpay-web.git
+cd lucre-huacarpay-web
 
-2. **Instala las dependencias**
-   ```bash
-   npm install
-   ```
+# 2. Instalar dependencias
+npm install
 
-3. **Configura las variables de entorno**
-   
-   Crea un archivo `.env.local` en la raíz del proyecto con tus configuraciones:
-   ```env
-   VITE_API_BASE_URL=https://api.lagunahuacarpay.org/v1
-   VITE_GOOGLE_MAPS_API_KEY=tu_api_key_aqui
-   ```
+# 3. Iniciar el servidor de desarrollo
+npm run dev
+```
 
-4. **Inicia el servidor de desarrollo**
-   ```bash
-   npm run dev
-   ```
-
-5. **Abre tu navegador**
-   
-   Navega a [http://localhost:5173](http://localhost:5173)
+La aplicación estará disponible en **http://localhost:5173**.
 
 ---
 
-## Estructura del Proyecto
+## Scripts disponibles
+
+| Script              | Descripción                                                             |
+| ------------------- | ----------------------------------------------------------------------- |
+| `npm run dev`       | Servidor de desarrollo con HMR (Vite).                                  |
+| `npm run typecheck` | Verificación de tipos TypeScript sin emitir archivos (`tsc --noEmit`).  |
+| `npm run build`     | Ejecuta `typecheck` y genera la build de producción optimizada en `dist/`. |
+| `npm run preview`   | Sirve localmente la build de producción para validar antes de desplegar. |
+| `npm run lint`      | Análisis estático con ESLint; falla si hay warnings (`--max-warnings 0`). |
+
+---
+
+## Estructura del proyecto
 
 ```
 lucre-huacarpay-web/
-├── public/                 # Archivos estáticos (copiados tal cual al build)
-│   └── manifest.json         # Configuración PWA
-├── src/                   # Código fuente
-│   ├── assets/           # Recursos estáticos
-│   │   └── styles/          # Estilos globales
-│   ├── components/       # Componentes reutilizables
-│   │   ├── layout/          # Componentes de layout
-│   │   └── ui/              # Componentes de interfaz
-│   ├── config/           # Configuración compartida (rutas, navegación)
-│   ├── contexts/         # Context providers
-│   ├── data/             # Datos estáticos centralizados
-│   ├── hooks/            # Custom hooks
-│   ├── pages/            # Páginas principales
-│   ├── router/           # Configuración de rutas
-│   ├── sections/         # Secciones de páginas
-│   ├── services/         # Servicios y API
-│   ├── types/            # Definiciones de tipos
-│   ├── utils/            # Utilidades y helpers
-│   ├── App.tsx              # Componente principal
-│   └── main.tsx             # Punto de entrada
-├── .gitignore            # Archivos ignorados por Git
-├── netlify.toml          # Configuración de Netlify
-├── package.json          # Dependencias y scripts
-├── tailwind.config.js    # Configuración de Tailwind
-├── tsconfig.json         # Configuración de TypeScript
-└── vite.config.js        # Configuración de Vite
+├── public/
+│   └── manifest.json              # Configuración PWA
+├── src/
+│   ├── app/
+│   │   ├── error-boundary/        # Captura de errores en runtime
+│   │   ├── layouts/               # RootLayout (Header + Footer)
+│   │   ├── providers/             # ThemeProvider, LanguageProvider, AppProviders
+│   │   └── routes/                # Definición de rutas (lazy) y constantes
+│   ├── entities/
+│   │   ├── biodiversity/          # Tipos y datos del ecosistema
+│   │   ├── gallery/               # Tipos e items de galería (con imageUrl)
+│   │   ├── project/               # Datos del proyecto de conservación
+│   │   └── team/                  # Integrantes y metodologías del equipo
+│   ├── features/
+│   │   └── contact/               # Formulario, hook y servicio de contacto
+│   ├── pages/                     # Páginas ensambladas (una por ruta)
+│   ├── shared/
+│   │   ├── assets/styles/         # CSS global y animaciones
+│   │   ├── constants/             # SITE_CONFIG, VISIT_INFO, NAVIGATION_ITEMS
+│   │   ├── hooks/                 # useIntersectionObserver, useScrollToTop
+│   │   ├── lib/                   # api-client (Axios)
+│   │   ├── schemas/               # Esquemas Zod (contactFormSchema)
+│   │   ├── types/                 # api.types, common.types
+│   │   └── ui/                    # Button, Input, Spinner, SectionHeader
+│   ├── widgets/
+│   │   ├── hero/                  # HeroSection (carrusel de imágenes)
+│   │   └── navigation/            # Header, Navbar, Footer
+│   ├── main.tsx                   # Punto de entrada
+│   └── vite-env.d.ts
+├── index.html                     # Shell HTML con SEO y Schema.org
+├── netlify.toml                   # Redirecciones SPA y headers de caché
+├── tailwind.config.js             # Paleta wetland-* y tipografía custom
+├── tsconfig.json                  # Configuración TypeScript estricta
+├── vite.config.ts                 # Alias @/ y plugins
+└── package.json
 ```
-
----
-
-## Scripts Disponibles
-
-```bash
-# Desarrollo
-npm run dev          # Inicia servidor de desarrollo (puerto 5173)
-
-# Construcción
-npm run build        # Construye la aplicación para producción
-
-# Vista previa
-npm run preview      # Vista previa de la build de producción
-
-# Linting
-npm run lint         # Ejecuta ESLint para revisar el código
-```
-
----
-
-## Variables de Entorno
-
-| Variable | Descripción | Valor por defecto |
-|----------|-------------|-------------------|
-| `VITE_API_BASE_URL` | URL base de la API | `https://api.lagunahuacarpay.org/v1` |
-| `VITE_GOOGLE_MAPS_API_KEY` | API Key de Google Maps | - |
-| `VITE_ANALYTICS_ID` | ID de Google Analytics | - |
 
 ---
 
 ## Despliegue
 
-### Netlify (Recomendado)
+El proyecto está configurado para **Netlify** con `netlify.toml`. El despliegue es automático con cada push a `main`.
 
-El proyecto está configurado para despliegue automático en Netlify:
-
-1. **Fork** este repositorio
-2. **Conecta** tu repositorio con Netlify
-3. **Configura** las variables de entorno en Netlify
-4. **Despliega** automáticamente con cada push a `main`
-
-### Despliegue Manual
+### Despliegue manual
 
 ```bash
-# Construir para producción
+# 1. Generar build de producción
 npm run build
 
-# Los archivos estáticos estarán en la carpeta 'dist'
+# 2. Previsualizar localmente (opcional)
+npm run preview
+
+# Los archivos estáticos quedan en dist/
 ```
 
----
+### Netlify (recomendado)
 
-## Contribución
-
-¡Las contribuciones son bienvenidas! Por favor, lee nuestra [guía de contribución](CONTRIBUTING.md) antes de enviar un PR.
-
-### Proceso de Contribución
-
-1. **Fork** el proyecto
-2. **Crea** una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. **Commit** tus cambios (`git commit -m 'Agrega nueva funcionalidad'`)
-4. **Push** a la rama (`git push origin feature/nueva-funcionalidad`)
-5. **Abre** un Pull Request
-
-### Estándares de Código
-
-- Utiliza **TypeScript** para nuevos archivos
-- Sigue las reglas de **ESLint** configuradas
-- Escribe **tests** para nuevas funcionalidades
-- Documenta cambios importantes en el **CHANGELOG**
+1. Haz fork del repositorio.
+2. Conecta el fork en [app.netlify.com](https://app.netlify.com).
+3. Netlify detecta automáticamente Vite; el `netlify.toml` ya configura el comando de build y las redirecciones SPA.
+4. Cada push a `main` despliega automáticamente.
 
 ---
 
-## Licencia
+## Guía de contribución
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+1. Crea un fork o una rama desde `main`.
+2. Implementa los cambios respetando la estructura FSD y el sistema de diseño existente.
+3. Ejecuta `npm run lint` y `npm run typecheck` antes de abrir un Pull Request.
+4. Describe el alcance del cambio, adjunta capturas si hay modificaciones visuales y enlaza los issues relacionados.
+
+### Estándares de código
+
+- **TypeScript estricto**: tipado explícito en todos los archivos; sin `any`.
+- **Componentes puros**: sin lógica de negocio en la capa de presentación.
+- **Tailwind semántico**: usa las clases `wetland-*` definidas en `tailwind.config.js`; evita valores arbitrarios innecesarios.
+- **Accesibilidad**: etiquetas ARIA, roles semánticos y manejo de foco visible en todos los elementos interactivos.
 
 ---
 
 ## Equipo
 
-### Desarrolladores
+| Nombre | Rol | Contacto |
+|---|---|---|
+| **Ezer Benito Zuniga Chura** | Desarrollador web | [@ezerzuniga.oficial16](https://www.instagram.com/ezerzuniga.oficial16/) |
+| **Flor Paloma Valderrama Quispe** | Coordinadora del Proyecto | — |
+| **Edgardo Rodrigo Carrillo Alarcon** | Analista financiero | — |
+| **Jesús Aaron Condo Morales** | Diseñador de prototipos | — |
+| **Maria Elena Condori Huaman** | Desarrollo Sostenible | — |
 
-- **[EzerZuniga](https://www.instagram.com/ezerzuniga.oficial16/)** - *Desarrollador Principal*
-
-### Agradecimientos
-
-- **Municipalidad de Lucre** - Por el apoyo institucional
-- **Comunidades locales** - Por compartir su conocimiento ancestral
-- **Conservacionistas** - Por su dedicación a la preservación del ecosistema
-
----
-
-## Contacto
-
-- **Email**: info@lagunahuacarpay.org
-- **Website**: [https://dreamy.tours/es/blog/laguna-huacarpay-en-cusco/](https://dreamy.tours/es/blog/laguna-huacarpay-en-cusco/)
-- **GitHub**: [https://github.com/EzerZuniga/lucre-huacarpay-web](https://github.com/EzerZuniga/lucre-huacarpay-web)
+**Agradecimientos:** Municipalidad de Lucre, comunidades locales del Valle Sur y todos los conservacionistas comprometidos con la protección del humedal.
 
 ---
 
-## Enlaces Útiles
+## Licencia
 
-- [Ubicación en Google Maps](https://maps.google.com/?q=Laguna+Huacarpay+Lucre)
-- [Galería de fotos](https://lagunahuacarpay.netlify.app/galeria)
-- [Plan de turismo sostenible](https://lagunahuacarpay.netlify.app/proyecto)
-- [Síguenos en redes sociales](https://lagunahuacarpay.netlify.app/contacto)
+Distribuido bajo licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ---
 
 <div align="center">
 
-**Hecho con dedicacion para la conservación de la Laguna Huacarpay**
-
-*Promoviendo el turismo sostenible en Cusco, Perú* 🇵🇪
+Desarrollado con dedicación para la conservación de la **Laguna Huacarpay** · Lucre, Cusco, Perú 🇵🇪
 
 </div>

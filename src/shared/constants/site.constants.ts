@@ -3,7 +3,7 @@ import type { SiteConfig, SocialLinks, VisitInfo } from '@/shared/types';
 export const SITE_CONFIG: SiteConfig = {
   name: 'Laguna Huacarpay',
   description: 'Humedal Ramsar de importancia internacional en Lucre, Cusco',
-  url: 'https://lagunahuacarpay.org',
+  url: 'https://humedal-lucre-huacarpay.netlify.app',
   email: 'info@lagunahuacarpay.org',
   phone: '+51 984 123 456',
   address: 'Laguna Huacarpay, Lucre, Valle Sur del Cusco, Perú',

@@ -3,6 +3,8 @@ export interface TeamMember {
   readonly role: string;
   readonly bio: string;
   readonly initials: string;
+  readonly specialty?: string;
+  readonly area?: string;
 }
 
 export interface MethodologyStep {

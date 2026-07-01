@@ -3,6 +3,7 @@ export interface GalleryItem {
   readonly title: string;
   readonly description: string;
   readonly category: 'paisaje' | 'fauna' | 'flora';
+  readonly imageUrl: string;
 }
 
 export interface GalleryCategory {
